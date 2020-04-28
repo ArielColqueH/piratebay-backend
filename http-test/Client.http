@@ -24,7 +24,7 @@ Accept: application/json
 
 ### Probamos listar todos los clientes
 
-GET http://localhost:8008/api/v1/clients
+GET http://piratebay.bo:80/api/v1/clients
 Accept: application/json
 
 
