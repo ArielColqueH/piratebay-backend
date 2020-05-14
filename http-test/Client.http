@@ -18,7 +18,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "birthDate": "1991-04-30T00:00:00.000-0000",
+  "user": "1991-04-30T00:00:00.000-0000",
   "status": true
 }
 
@@ -46,5 +46,6 @@ Accept: application/json
   "birthDate": "1991-04-30T00:00:00.000-0000",
   "status": true
 }
+
 
 ###
