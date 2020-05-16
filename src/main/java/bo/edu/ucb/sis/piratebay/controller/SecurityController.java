@@ -7,24 +7,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/security")
+
 public class SecurityController {
     private SecurityBl securityBl;
     @Autowired
     public SecurityController(SecurityBl securityBl) {
         this.securityBl = securityBl;
     }
-
-    @RequestMapping(value = "login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,  consumes = MediaType.APPLICATION_JSON_VALUE )
+    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,  consumes = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<Map<String, Object>> authenticate(@RequestBody CredentialModel credentialModel) {
         Integer user_id =securityBl.authenticate(credentialModel.getUsername(),credentialModel.getPassword());
         if( user_id!=null ) {
@@ -34,7 +31,7 @@ public class SecurityController {
             return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
             Map <String, Object> response = new HashMap();
-            response.put("message", "User or password invalid");
+            response.put("message", "User or password invalid"+"username : "+credentialModel.getUsername()+"| password: "+credentialModel.getPassword());
             return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
         }
     }
