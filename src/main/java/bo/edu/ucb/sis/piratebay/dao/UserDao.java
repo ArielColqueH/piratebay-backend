@@ -44,4 +44,35 @@ public class UserDao {
         }
         return resultado;
     }
+    public List<String> findAllFeatureCodeByUserId(int userId) {
+        List<String> features = null;
+        String query = "SELECT\n" +
+                "       DISTINCT fea.feature_code\n" +
+                "FROM\n" +
+                "    \"user\" usr\n" +
+                "    JOIN user_role uro ON usr.user_id = uro.user_id\n" +
+                "    JOIN \"role\" rle ON rle.role_id = uro.role_id\n" +
+                "    JOIN role_feature rfe ON rfe.role_id = rle.role_id\n" +
+                "    JOIN feature fea ON fea.feature_id = rfe.feature_id\n" +
+                "WHERE\n" +
+                "    usr.user_id = ? \n" +
+                "    AND usr.status =  1\n" +
+                "    AND uro.status = 1\n" +
+                "    AND rle.status = 1\n" +
+                "    AND rfe.status = 1\n" +
+                "    AND fea.status = 1";
+        try {
+            features = jdbcTemplate.query(query,
+                    new Object[]{userId},
+                    new RowMapper<String>() {
+                        @Override
+                        public String mapRow(ResultSet resultSet, int i) throws SQLException {
+                            return resultSet.getString(1);
+                        }
+                    });
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
+        }
+        return features;
+    }
 }

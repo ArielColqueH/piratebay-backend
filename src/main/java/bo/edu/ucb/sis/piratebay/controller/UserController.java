@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/api/v1/user")
 
@@ -29,10 +29,8 @@ public class UserController {
     public UserController (UserBl userBl){
         this.userBl=userBl;
     }
-
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<List<UserModel>> findAllACtives(@RequestHeader("Authorization") String authorization){ //bearer token
-
         //decodificar el token
         String tokenJwt =authorization.substring(7);
         System.out.println("Token JWT :"+tokenJwt);

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/api/v1/security")
 
@@ -27,7 +27,6 @@ public class SecurityController {
 
     @Value("${piratebay.security.tokenJwt}")
     private String secretJWT;
-
     @Autowired
     public SecurityController(SecurityBl securityBl) {
         this.securityBl = securityBl;
