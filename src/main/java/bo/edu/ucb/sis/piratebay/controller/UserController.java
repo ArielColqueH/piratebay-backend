@@ -39,7 +39,11 @@ public class UserController {
         DecodedJWT decodeJWT = JWT.decode(tokenJwt);
         String idUsuario = decodeJWT.getSubject();
         System.out.println("ID USUARIO :" + idUsuario);
-        //valida el token
+        //System.out.println("Claim type :" +decodeJWT.getClaim("type").asString());
+        if(!"AUTHN".equals(decodeJWT.getClaim("type").asString())){
+            throw new RuntimeException("El token proporcionado no es de autenticacion");
+        }
+        //valida el token bueno y elde autencticacion
         Algorithm algorithm = Algorithm.HMAC256(secretJWT);
         JWTVerifier verifier = JWT.require(algorithm).withIssuer("Piratebay").build();
         verifier.verify(tokenJwt);

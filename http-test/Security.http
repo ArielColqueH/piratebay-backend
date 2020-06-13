@@ -8,3 +8,11 @@ Accept: application/json
 }
 
 ###
+
+POST http://localhost:8008/api/v1/security/refresh
+Content-Type: application/json
+Accept: application/json
+
+{
+  "refreshToken": "jperesafasfasz",
+}
