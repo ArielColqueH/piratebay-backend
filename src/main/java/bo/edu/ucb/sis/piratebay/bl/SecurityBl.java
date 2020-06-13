@@ -36,7 +36,6 @@ public class SecurityBl {
     /**
      *Este metodo recibe el usuario y password en plano , consulta a la base de datos enviando el paswoord con sha256 + salt
      * y si  esta bien genera el token JWT
-     *
      */
 
     public Map<String,String> authenticate(String username , String password){

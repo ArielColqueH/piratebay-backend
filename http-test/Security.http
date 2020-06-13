@@ -14,5 +14,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "refreshToken": "jperesafasfasz",
+  "refreshToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaXNzIjoiUGlyYXRlYmF5IiwidHlwZSI6IlJFRlJFU0giLCJleHAiOjE1OTIwMTY2NjZ9.OwSTVWAKSWIMeLC-VnGbBjkrKWS12w_wCia5n6xjxw8"
 }
+
+###
