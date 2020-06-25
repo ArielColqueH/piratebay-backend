@@ -36,15 +36,18 @@ VALUES ('ADMIN',1,1,'admin','localhost',now());
 
 INSERT INTO role (role_name, status, tx_id, tx_username, tx_host, tx_date)
 VALUES ('WAREHOUSE_SUPERVISOR',1,1,'admin','localhost',now());
+
 INSERT INTO role (role_name, status, tx_id, tx_username, tx_host, tx_date)
 VALUES ('WAREHOUSE_EMPLOYEE',1,1,'admin','localhost',now());
+
+
 --ADMIN ROLE
 INSERT INTO role_feature ( role_id, feature_id, status, tx_id, tx_username, tx_host, tx_date)
 VALUES(1,1,1,1,'admin','localhost',now());
 
-
 INSERT INTO role_feature (role_id, feature_id, status, tx_id, tx_username, tx_host, tx_date)
 VALUES(1,3,1,1,'admin','localhost',now());
+
 
 --WAREHOUSE SUPERVISOR
 
@@ -61,12 +64,11 @@ INSERT INTO role_feature (role_id, feature_id, status, tx_id, tx_username, tx_ho
 VALUES(3,2,1,1,'admin','localhost',now());
 
 --
-
 INSERT INTO user_role ( user_id, role_id,status, tx_id, tx_username, tx_host, tx_date)
 VALUES (2,3,1,1,'admin','localhost',now());
+
 INSERT INTO user_role ( user_id, role_id,status, tx_id, tx_username, tx_host, tx_date)
 VALUES (2,1,1,1,'admin','localhost',now());
-
 --
 
 SELECT
@@ -77,6 +79,115 @@ FROM
     JOIN "role" rle ON rle.role_id = uro.role_id
     JOIN role_feature rfe ON rfe.role_id = rle.role_id
     JOIN feature fea ON fea.feature_id = rfe.feature_id;
+
+
+--ULTIMA PRESENTACION
+
+
+--creacion de catalogo
+INSERT INTO catalog (catalog_name, catalog_description, status, tx_id, tx_username, tx_host, tx_date)
+values ("video","todos los tipos de video",1,1,'admin','localhost',now());
+
+
+--insertar producto
+INSERT INTO product (product_code,cat_product_type, product_name, product_description, status, tx_id, tx_username,
+                     tx_host, tx_date)
+VALUES ('jjr','video','Jojo rabbit',1,1,1,'admin','localhost',now());
+INSERT INTO product (product_code,cat_product_type, product_name, product_description, status, tx_id, tx_username,
+                     tx_host, tx_date)
+VALUES ('mjc','video','Mujercitas',1,1,1,'admin','localhost',now());
+INSERT INTO product (product_code,cat_product_type, product_name, product_description, status, tx_id, tx_username,
+                     tx_host, tx_date)
+VALUES ('lld','video','Lalaland',1,1,1,'admin','localhost',now());
+
+
+--usuarios
+INSERT INTO person (first_name, first_surname, second_suname, birthdate, document_id, document_expedition, cat_document_type, cat_genre, cat_marital_status, status, tx_id, tx_username, tx_host, tx_date)
+VALUES('ariel','colque','herrera','11/10/1998','6195349','21/10/2020','CI','M','SOLTERO',1,1,'admin','localhost',now());
+INSERT INTO person (first_name, first_surname, second_suname, birthdate, document_id, document_expedition, cat_document_type, cat_genre, cat_marital_status, status, tx_id, tx_username, tx_host, tx_date)
+VALUES('nicole','aduviri','espinoza','12/10/1998','33546324','22/10/2020','CI','F','SOLTERO',1,1,'admin','localhost',now());
+INSERT INTO person (first_name, first_surname, second_suname, birthdate, document_id, document_expedition, cat_document_type, cat_genre, cat_marital_status, status, tx_id, tx_username, tx_host, tx_date)
+VALUES('solange','jimenez','oropeza','12/11/1998','234623','23/10/2020','CI','F','SOLTERO',1,1,'admin','localhost',now());
+
+--user
+INSERT INTO "user"
+( user_id, username, password, email, phone_number,
+  cat_user_status, status, tx_id, tx_username, tx_host,
+  tx_date)
+VALUES
+(  nextval('user_user_id_seq') , 'arielC', '6b9ffd71631dd64e1231ef41e138cd29b933c687073c1f72a66571998d9bd2a3', 'arielc@gmail.com', '70655570',
+   'ACTIVE', 1, 1, 'root', '127.0.0.1',
+   now()
+);
+INSERT INTO "user"
+( user_id, username, password, email, phone_number,
+  cat_user_status, status, tx_id, tx_username, tx_host,
+  tx_date)
+VALUES
+(  nextval('user_user_id_seq') , 'nicoleA', '6b9ffd71631dd64e1231ef41e138cd29b933c687073c1f72a66571998d9bd2a3', 'nicolea@gmail.com', '70655570',
+   'ACTIVE', 1, 1, 'root', '127.0.0.1',
+   now()
+);
+INSERT INTO "user"
+( user_id, username, password, email, phone_number,
+  cat_user_status, status, tx_id, tx_username, tx_host,
+  tx_date)
+VALUES
+(  nextval('user_user_id_seq') , 'solangeH', '6b9ffd71631dd64e1231ef41e138cd29b933c687073c1f72a66571998d9bd2a3', 'solangeH@gmail.com', '70655570',
+   'ACTIVE', 1, 1, 'root', '127.0.0.1',
+   now()
+);
+--crear customer
+INSERT INTO customer (user_id, person_id, status, tx_id, tx_username, tx_host, tx_date)
+ VALUES(4,1,1, 1, 'root', '127.0.0.1',
+        now());
+INSERT INTO customer (user_id, person_id, status, tx_id, tx_username, tx_host, tx_date)
+VALUES(5,2,1, 1, 'root', '127.0.0.1',
+       now());
+INSERT INTO customer (user_id, person_id, status, tx_id, tx_username, tx_host, tx_date)
+VALUES(6,3,1, 1, 'root', '127.0.0.1',
+       now());
+--ORDENES
+INSERT INTO "order" (user_id, date, status, tx_id, tx_username, tx_host, tx_date, payday)
+VALUES (1,CURRENT_TIMESTAMP ,1, 1, 'root', '127.0.0.1',now(),CURRENT_TIMESTAMP);
+
+INSERT INTO "order" (user_id, date, status, tx_id, tx_username, tx_host, tx_date, payday)
+VALUES (2,CURRENT_TIMESTAMP ,1, 1, 'root', '127.0.0.1',now(),CURRENT_TIMESTAMP);
+
+--ORDEN PRODUCTO
+INSERT INTO product_order (order_id,product_id, unit_price, qtty_requested, status, tx_id, tx_username, tx_host, tx_date, comment)
+ VALUES(1,5,5,2,1, 1, 'root', '127.0.0.1',now(),'no comments');
+
+INSERT INTO product_order (order_id,product_id, unit_price, qtty_requested, status, tx_id, tx_username, tx_host, tx_date, comment)
+VALUES(1,6,5,2,1, 1, 'root', '127.0.0.1',now(),'no comments');
+
+INSERT INTO product_order (order_id,product_id, unit_price, qtty_requested, status, tx_id, tx_username, tx_host, tx_date, comment)
+VALUES(2,7,5,2,1, 1, 'root', '127.0.0.1',now(),'no comments');
+
+--atributo
+
+INSERT INTO attribute (product_id, attr_name, attr_value, attr_data_type, status, tx_id, tx_username, tx_host, tx_date)
+VALUES (5,'duracion','120','minutos',1,1, 'root', '127.0.0.1',now());
+INSERT INTO attribute (product_id, attr_name, attr_value, attr_data_type, status, tx_id, tx_username, tx_host, tx_date)
+VALUES (6,'duracion','115','minutos',1,1, 'root', '127.0.0.1',now());
+INSERT INTO attribute (product_id, attr_name, attr_value, attr_data_type, status, tx_id, tx_username, tx_host, tx_date)
+VALUES (7,'duracion','108','minutos',1,1, 'root', '127.0.0.1',now());
+
+
+--query
+
+SELECT
+    usr.user_id,usr.username,ord.order_id,ord.date,ord.payday,prod.product_name,proord.qtty_requested,att.attr_value
+FROM
+    "user" usr
+        JOIN "order" ord ON usr.user_id=ord.user_id
+        JOIN product_order proord ON proord.order_id = ord.order_id
+        JOIN product prod ON prod.product_id = proord.product_id
+        JOIN attribute att ON prod.product_id=att.product_id;
+
+
+
+
 
 
 

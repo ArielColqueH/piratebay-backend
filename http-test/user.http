@@ -1,6 +1,20 @@
 GET http://localhost:8008/api/v1/user/
 Content-Type: application/json
-Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmZWF0dXJlcyI6WyJCVVRUT05fREVMRVRFX1VTRVIiLCJQQUdFX1VTRVJfTUFOQUdFTUVOVCIsIlBST0RVQ1RfTUFOQUdNRU5UIl0sInN1YiI6IjIiLCJpc3MiOiJQaXJhdGViYXkiLCJ0eXBlIjoiQVVUSE4iLCJleHAiOjE1OTIwODE4NDZ9.65EGCVQO6XC8sUrW9G2_L-MxJ9fQbwuqXbt8rpmfJBo
+Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmZWF0dXJlcyI6WyJCVVRUT05fREVMRVRFX1VTRVIiLCJQQUdFX1VTRVJfTUFOQUdFTUVOVCIsIlBST0RVQ1RfTUFOQUdNRU5UIl0sInN1YiI6IjIiLCJpc3MiOiJQaXJhdGViYXkiLCJ0eXBlIjoiQVVUSE4iLCJleHAiOjE1OTI4MzM3NDB9.Px03KUeX1G7qbM_HAqBpCMIGQeK4ThPyEXMrsg1afas
 Accept: application/json
 
+###
+
+POST http://localhost:8008/api/v1/user/
+Content-Type: application/json
+Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmZWF0dXJlcyI6WyJCVVRUT05fREVMRVRFX1VTRVIiLCJQQUdFX1VTRVJfTUFOQUdFTUVOVCIsIlBST0RVQ1RfTUFOQUdNRU5UIl0sInN1YiI6IjIiLCJpc3MiOiJQaXJhdGViYXkiLCJ0eXBlIjoiQVVUSE4iLCJleHAiOjE1OTIzMTk0ODR9.INJgvVJ6LtyvgiEoJmDWqjzcpIQLgSBl8Bt6tCmCFXM
+Accept: application/json
+
+{
+  "username": "jariel",
+  "password": "123456",
+  "email": "adf@adf",
+  "phone_number": "425",
+  "cat_user_status": "ACTIVE"
+}
 ###

@@ -44,6 +44,12 @@ public class UserDao {
         }
         return resultado;
     }
+    public UserModel insertUserActiveDao(UserModel aux){
+        String query ="INSERT INTO \"user\" (username,email,phone_number,cat_user_status)" +
+                " values (aux.username,aux.email,aux.phoneNumber,aux.carUserStatus)";
+        UserModel userObject=null;
+        return userObject;
+    }
     public List<String> findAllFeatureCodeByUserId(int userId) {
         List<String> features = null;
         String query = "SELECT\n" +

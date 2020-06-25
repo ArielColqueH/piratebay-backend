@@ -45,7 +45,27 @@ public class UserController {
         Algorithm algorithm = Algorithm.HMAC256(secretJWT);
         JWTVerifier verifier = JWT.require(algorithm).withIssuer("Piratebay").build();
         verifier.verify(tokenJwt);
-
+        System.out.println("obteniendo lista de usuarios");
         return new ResponseEntity<>(this.userBl.findAllActives(), HttpStatus.OK);
     }
+
+//    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE )
+//    public ResponseEntity<UserModel> insertUser(@RequestHeader("Authorization") String authorization){ //bearer token
+//        //decodificar el token
+//        String tokenJwt =authorization.substring(7);
+//        System.out.println("Token JWT :"+tokenJwt);
+//        DecodedJWT decodeJWT = JWT.decode(tokenJwt);
+//        String idUsuario = decodeJWT.getSubject();
+//        System.out.println("ID USUARIO :" + idUsuario);
+//        //System.out.println("Claim type :" +decodeJWT.getClaim("type").asString());
+//        if(!"AUTHN".equals(decodeJWT.getClaim("type").asString())){
+//            throw new RuntimeException("El token proporcionado no es de autenticacion");
+//        }
+//        //valida el token bueno y elde autencticacion
+//        Algorithm algorithm = Algorithm.HMAC256(secretJWT);
+//        JWTVerifier verifier = JWT.require(algorithm).withIssuer("Piratebay").build();
+//        verifier.verify(tokenJwt);
+//
+//        return new ResponseEntity<>(this.userBl.insertUserActivesBI(), HttpStatus.OK);
+//    }
 }

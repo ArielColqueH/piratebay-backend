@@ -10,6 +10,7 @@ import java.util.List;
 @Service
 public class UserBl {
     private UserDao userDao;
+    //private UserModel userModel;
     @Autowired
     public UserBl (UserDao userDao) {
         this.userDao=userDao;
@@ -18,6 +19,10 @@ public class UserBl {
     public List<UserModel> findAllActives(){
         return this.userDao.findAllActives();
     }
+
+//    public UserModel insertUserActivesBI(){
+//        return this.userDao.insertUserActiveDao(userModel);
+//    }
 
 
 }

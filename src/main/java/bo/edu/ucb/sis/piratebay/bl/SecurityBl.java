@@ -46,8 +46,8 @@ public class SecurityBl {
                 .toString();//TODO repetir el algoritmo de hash N veces
         Integer userId = userDao.findUserIdByUsernameAndPassword(username,sha256hex);
         if(userId!=null){
-            result.put("authentication", generateJWT(userId,25,"AUTHN",userDao.findAllFeatureCodeByUserId(userId)));
-            result.put("refresh", generateJWT(userId,35,"REFRESH",null));
+            result.put("authentication", generateJWT(userId,1,"AUTHN",userDao.findAllFeatureCodeByUserId(userId)));
+            result.put("refresh", generateJWT(userId,2,"REFRESH",null));
             return result;
         }
         else{
@@ -72,17 +72,14 @@ public class SecurityBl {
         JWTVerifier verifier = JWT.require(algorithm).withIssuer("Piratebay").build();
         verifier.verify(tokenJwt);
 
-
-
         Map<String,String> result= new HashMap();
         Integer userIdAsInt = Integer.parseInt(idUsuario);
 
-            result.put("authentication", generateJWT(userIdAsInt,25,"AUTHN",userDao.findAllFeatureCodeByUserId(userIdAsInt)));
-            result.put("refresh", generateJWT(Integer.parseInt(idUsuario),35,"REFRESH",null));
+            result.put("authentication", generateJWT(userIdAsInt,1,"AUTHN",userDao.findAllFeatureCodeByUserId(userIdAsInt)));
+            result.put("refresh", generateJWT(Integer.parseInt(idUsuario),2,"REFRESH",null));
+            System.out.println("obteniendo refresh");
             return result;
     }
-
-
     private String generateJWT(Integer userId, int minutes, String type, List<String> features){
 
         LocalDateTime expiresAt = LocalDateTime.now(ZoneId.systemDefault()).plusMinutes(minutes);
