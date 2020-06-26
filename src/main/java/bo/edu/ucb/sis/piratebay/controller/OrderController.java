@@ -1,7 +1,6 @@
 package bo.edu.ucb.sis.piratebay.controller;
-
-import bo.edu.ucb.sis.piratebay.bl.UserBl;
-import bo.edu.ucb.sis.piratebay.model.UserModel;
+import bo.edu.ucb.sis.piratebay.bl.OrderBl;
+import bo.edu.ucb.sis.piratebay.model.OrderModel;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
@@ -18,19 +17,18 @@ import java.util.List;
 import java.util.Map;
 @CrossOrigin(origins="*")
 @RestController
-@RequestMapping("/api/v1/user")
-
-public class UserController {
-    private UserBl userBl;
+@RequestMapping("/api/v1/orders")
+public class OrderController {
+    private OrderBl orderBl;
     @Value("${piratebay.security.tokenJwt}")
     private String secretJWT;
 
     @Autowired
-    public UserController (UserBl userBl){
-        this.userBl=userBl;
+    public OrderController(OrderBl orderBl){
+        this.orderBl=orderBl;
     }
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
-    public ResponseEntity<List<UserModel>> findAllACtives(@RequestHeader("Authorization") String authorization){ //bearer token
+    public ResponseEntity<List<OrderModel>> findAllOrdersActive(@RequestHeader("Authorization") String authorization){ //bearer token
         //decodificar el token
         String tokenJwt =authorization.substring(7);
         System.out.println("Token JWT :"+tokenJwt);
@@ -45,7 +43,7 @@ public class UserController {
         Algorithm algorithm = Algorithm.HMAC256(secretJWT);
         JWTVerifier verifier = JWT.require(algorithm).withIssuer("Piratebay").build();
         verifier.verify(tokenJwt);
-        System.out.println("obteniendo lista de usuarios");
-        return new ResponseEntity<>(this.userBl.findAllActives(), HttpStatus.OK);
+        System.out.println("obteniendo lista de ordenes");
+        return new ResponseEntity<>(this.orderBl.findAllOrders(), HttpStatus.OK);
     }
 }

@@ -185,6 +185,19 @@ FROM
         JOIN product prod ON prod.product_id = proord.product_id
         JOIN attribute att ON prod.product_id=att.product_id;
 
+--query tabla
+
+SELECT
+      ord.order_id,usr.username,ord.date,ord.payday,ord.preparationday,ord.preparationfinisheday
+FROM
+      "user" usr
+      JOIN "order" ord ON usr.user_id=ord.user_id
+      JOIN product_order proord ON proord.order_id = ord.order_id
+      JOIN product prod ON prod.product_id = proord.product_id
+GROUP BY  ord.order_id,usr.username,ord.date,ord.payday;
+
+
+
 
 
 
