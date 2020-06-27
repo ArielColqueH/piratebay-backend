@@ -91,14 +91,14 @@ values ("video","todos los tipos de video",1,1,'admin','localhost',now());
 
 --insertar producto
 INSERT INTO product (product_code,cat_product_type, product_name, product_description, status, tx_id, tx_username,
-                     tx_host, tx_date)
-VALUES ('jjr','video','Jojo rabbit',1,1,1,'admin','localhost',now());
+                     tx_host, tx_date,product_qqt)
+VALUES ('jjr','video','Jojo rabbit',1,1,1,'admin','localhost',now(),3);
 INSERT INTO product (product_code,cat_product_type, product_name, product_description, status, tx_id, tx_username,
-                     tx_host, tx_date)
-VALUES ('mjc','video','Mujercitas',1,1,1,'admin','localhost',now());
+                     tx_host, tx_date,product_qqt)
+VALUES ('mjc','video','Mujercitas',1,1,1,'admin','localhost',now(),8);
 INSERT INTO product (product_code,cat_product_type, product_name, product_description, status, tx_id, tx_username,
-                     tx_host, tx_date)
-VALUES ('lld','video','Lalaland',1,1,1,'admin','localhost',now());
+                     tx_host, tx_date,product_qqt)
+VALUES ('lld','video','Lalaland',1,1,1,'admin','localhost',now(),9);
 
 
 --usuarios
@@ -195,6 +195,8 @@ FROM
       JOIN product_order proord ON proord.order_id = ord.order_id
       JOIN product prod ON prod.product_id = proord.product_id
 GROUP BY  ord.order_id,usr.username,ord.date,ord.payday;
+
+--cantidad producto
 
 
 

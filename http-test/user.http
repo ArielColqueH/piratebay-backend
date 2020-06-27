@@ -5,16 +5,16 @@ Accept: application/json
 
 ###
 
-POST http://localhost:8008/api/v1/user/
-Content-Type: application/json
-Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmZWF0dXJlcyI6WyJCVVRUT05fREVMRVRFX1VTRVIiLCJQQUdFX1VTRVJfTUFOQUdFTUVOVCIsIlBST0RVQ1RfTUFOQUdNRU5UIl0sInN1YiI6IjIiLCJpc3MiOiJQaXJhdGViYXkiLCJ0eXBlIjoiQVVUSE4iLCJleHAiOjE1OTIzMTk0ODR9.INJgvVJ6LtyvgiEoJmDWqjzcpIQLgSBl8Bt6tCmCFXM
-Accept: application/json
-
-{
-  "username": "jariel",
-  "password": "123456",
-  "email": "adf@adf",
-  "phone_number": "425",
-  "cat_user_status": "ACTIVE"
-}
+#POST http://localhost:8008/api/v1/user/
+#Content-Type: application/json
+#Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmZWF0dXJlcyI6WyJCVVRUT05fREVMRVRFX1VTRVIiLCJQQUdFX1VTRVJfTUFOQUdFTUVOVCIsIlBST0RVQ1RfTUFOQUdNRU5UIl0sInN1YiI6IjIiLCJpc3MiOiJQaXJhdGViYXkiLCJ0eXBlIjoiQVVUSE4iLCJleHAiOjE1OTIzMTk0ODR9.INJgvVJ6LtyvgiEoJmDWqjzcpIQLgSBl8Bt6tCmCFXM
+#Accept: application/json
+#
+#{
+#  "username": "jariel",
+#  "password": "123456",
+#  "email": "adf@adf",
+#  "phone_number": "425",
+#  "cat_user_status": "ACTIVE"
+#}
 ###
