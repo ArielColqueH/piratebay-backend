@@ -18,7 +18,7 @@ public class OrderTableBl {
         this.orderTableDao=orderTableDao;
     }
 
-    public List<OrderTableModel> findAllOrdersTable(){
-        return this.orderTableDao.findAllOrdersTable();
+    public List<OrderTableModel> findAllOrdersTable(Integer estado){
+        return this.orderTableDao.findAllOrdersTable(estado);
     }
 }

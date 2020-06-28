@@ -185,18 +185,18 @@ FROM
         JOIN product prod ON prod.product_id = proord.product_id
         JOIN attribute att ON prod.product_id=att.product_id;
 
---query tabla
+--query table by ID
 
 SELECT
-      ord.order_id,usr.username,ord.date,ord.payday,ord.preparationday,ord.preparationfinisheday
+    ord.order_id,usr.username,DATE_TRUNC('second',ord.date),DATE_TRUNC('second',ord.payday),ord.preparationday,ord.preparationfinisheday
 FROM
-      "user" usr
-      JOIN "order" ord ON usr.user_id=ord.user_id
-      JOIN product_order proord ON proord.order_id = ord.order_id
-      JOIN product prod ON prod.product_id = proord.product_id
-GROUP BY  ord.order_id,usr.username,ord.date,ord.payday;
-
---cantidad producto
+    "user" usr
+        JOIN "order" ord ON usr.user_id=ord.user_id
+        JOIN product_order proord ON proord.order_id = ord.order_id
+        JOIN product prod ON prod.product_id = proord.product_id
+        AND ord.status=1
+GROUP BY  ord.order_id,usr.username,ord.date,ord.payday
+ORDER BY ord.order_id;
 
 
 

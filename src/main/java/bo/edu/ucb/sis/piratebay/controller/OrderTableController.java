@@ -11,10 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import bo.edu.ucb.sis.piratebay.model.EstadoOrderIdModel;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 @CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/api/v1/ordersTable")
@@ -29,7 +29,7 @@ public class OrderTableController {
         this.orderTableBl=orderTableBl;
     }
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
-    public ResponseEntity<List<OrderTableModel>> findAllOrdersActive(@RequestHeader("Authorization") String authorization){ //bearer token
+    public ResponseEntity<List<OrderTableModel>> findAllOrdersActive(@RequestHeader("Authorization") String authorization,@RequestBody EstadoOrderIdModel ordId){ //bearer token
         //decodificar el token
         String tokenJwt =authorization.substring(7);
         System.out.println("Token JWT :"+tokenJwt);
@@ -45,6 +45,6 @@ public class OrderTableController {
         JWTVerifier verifier = JWT.require(algorithm).withIssuer("Piratebay").build();
         verifier.verify(tokenJwt);
         System.out.println("obteniendo lista de ordenes table");
-        return new ResponseEntity<>(this.orderTableBl.findAllOrdersTable(), HttpStatus.OK);
+        return new ResponseEntity<>(this.orderTableBl.findAllOrdersTable(ordId.getEstado()), HttpStatus.OK);
     }
 }
