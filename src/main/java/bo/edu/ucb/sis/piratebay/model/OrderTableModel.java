@@ -7,17 +7,19 @@ public class OrderTableModel {
     private String fechaPago;
     private String fechaPreparacion;
     private String fechaPreparado;
+    private Integer status;
 
     public OrderTableModel() {
     }
 
-    public OrderTableModel(Integer orderTableId, String username, String fechaPedido, String fechaPago, String fechaPreparacion, String fechaPreparado) {
+    public OrderTableModel(Integer orderTableId, String username, String fechaPedido, String fechaPago, String fechaPreparacion, String fechaPreparado, Integer status) {
         this.orderTableId = orderTableId;
         this.username = username;
         this.fechaPedido = fechaPedido;
         this.fechaPago = fechaPago;
         this.fechaPreparacion = fechaPreparacion;
         this.fechaPreparado = fechaPreparado;
+        this.status = status;
     }
 
     public Integer getOrderTableId() {
@@ -68,6 +70,14 @@ public class OrderTableModel {
         this.fechaPreparado = fechaPreparado;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "OrderTableModel{" +
@@ -77,6 +87,7 @@ public class OrderTableModel {
                 ", fechaPago='" + fechaPago + '\'' +
                 ", fechaPreparacion='" + fechaPreparacion + '\'' +
                 ", fechaPreparado='" + fechaPreparado + '\'' +
+                ", status=" + status +
                 '}';
     }
 }

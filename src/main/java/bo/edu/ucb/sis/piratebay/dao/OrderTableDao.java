@@ -20,7 +20,7 @@ public class OrderTableDao {
 
     public List<OrderTableModel> findAllOrdersTable(Integer estado){
         String query ="SELECT\n" +
-                "    ord.order_id,usr.username,DATE_TRUNC('second',ord.date),DATE_TRUNC('second',ord.payday),DATE_TRUNC('second',ord.preparationday),DATE_TRUNC('second',ord.preparationfinisheday)\n" +
+                "    ord.order_id,usr.username,DATE_TRUNC('second',ord.date),DATE_TRUNC('second',ord.payday),DATE_TRUNC('second',ord.preparationday),DATE_TRUNC('second',ord.preparationfinisheday),ord.status\n" +
                 "FROM\n" +
                 "    \"user\" usr\n" +
                 "        JOIN \"order\" ord ON usr.user_id=ord.user_id\n" +
@@ -35,7 +35,7 @@ public class OrderTableDao {
             resultado = jdbcTemplate.query(query,new Object[]{estado},new RowMapper<OrderTableModel>(){
                 public OrderTableModel mapRow(ResultSet restulSet, int i) throws SQLException {
 
-                    return new OrderTableModel(restulSet.getInt(1),restulSet.getString(2),restulSet.getString(3),restulSet.getString(4),restulSet.getString(5),restulSet.getString(6));
+                    return new OrderTableModel(restulSet.getInt(1),restulSet.getString(2),restulSet.getString(3),restulSet.getString(4),restulSet.getString(5),restulSet.getString(6),restulSet.getInt(7));
                 }
             });
         }catch (Exception e){

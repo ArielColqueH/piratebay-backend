@@ -28,7 +28,7 @@ public class CantidadProductoController {
         this.cantidadProductoBl=cantidadProductoBl;
     }
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE , consumes = MediaType.APPLICATION_JSON_VALUE )
-    public ResponseEntity<Integer> findAllCantidadProductos(@RequestHeader("Authorization") String authorization,@RequestBody CantidadProductoModel idProducto){ //bearer token
+    public ResponseEntity<Integer> findAllCantidadProductos(@RequestHeader("Authorization") String authorization,@RequestBody Integer codigo){ //bearer token
         //decodificar el token
         String tokenJwt =authorization.substring(7);
         System.out.println("Token JWT :"+tokenJwt);
@@ -44,6 +44,6 @@ public class CantidadProductoController {
         JWTVerifier verifier = JWT.require(algorithm).withIssuer("Piratebay").build();
         verifier.verify(tokenJwt);
         System.out.println("obteniendo cantidad");
-        return new ResponseEntity<>(this.cantidadProductoBl.findAllCantidadProducto(idProducto.getProducto_id()), HttpStatus.OK);
+        return new ResponseEntity<>(this.cantidadProductoBl.findAllCantidadProducto(codigo), HttpStatus.OK);
     }
 }
