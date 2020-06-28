@@ -27,7 +27,7 @@ public class CantidadProductoController {
     public CantidadProductoController(CantidadProductoBl cantidadProductoBl){
         this.cantidadProductoBl=cantidadProductoBl;
     }
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE , consumes = MediaType.APPLICATION_JSON_VALUE )
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE , consumes = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<List<CantidadProductoModel>> findAllCantidadProductos(@RequestHeader("Authorization") String authorization,@RequestBody ProductoIdModel cantPro){ //bearer token
         //decodificar el token
         String tokenJwt =authorization.substring(7);
