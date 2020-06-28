@@ -20,7 +20,7 @@ public class OrderTableDao {
 
     public List<OrderTableModel> findAllOrdersTable(Integer estado){
         String query ="SELECT\n" +
-                "    ord.order_id,usr.username,DATE_TRUNC('second',ord.date),DATE_TRUNC('second',ord.payday),ord.preparationday,ord.preparationfinisheday\n" +
+                "    ord.order_id,usr.username,DATE_TRUNC('second',ord.date),DATE_TRUNC('second',ord.payday),DATE_TRUNC('second',ord.preparationday),DATE_TRUNC('second',ord.preparationfinisheday)\n" +
                 "FROM\n" +
                 "    \"user\" usr\n" +
                 "        JOIN \"order\" ord ON usr.user_id=ord.user_id\n" +

@@ -28,7 +28,7 @@ public class OrderTableController {
     public OrderTableController(OrderTableBl orderTableBl){
         this.orderTableBl=orderTableBl;
     }
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE )
     public ResponseEntity<List<OrderTableModel>> findAllOrdersActive(@RequestHeader("Authorization") String authorization,@RequestBody EstadoOrderIdModel ordId){ //bearer token
         //decodificar el token
         String tokenJwt =authorization.substring(7);
