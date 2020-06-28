@@ -17,22 +17,16 @@ public class CantidadProductoDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<CantidadProductoModel> findAllCantidades(Integer orderId){
+    public Integer findAllCantidades(Integer orderId){
         String query ="SELECT\n" +
-                "    prod.product_id,prod.product_qqt\n" +
+                "    prod.product_qqt\n" +
                 "FROM\n" +
-                "    \"order\" ord\n" +
-                "        JOIN product_order proord ON proord.order_id = ord.order_id\n" +
-                "        JOIN product prod ON prod.product_id = proord.product_id\n" +
-                "WHERE ord.order_id = ?";
+                "     product prod\n" +
+                "WHERE prod.product_id = ?";
 
-        List<CantidadProductoModel> resultado=null;
+        Integer resultado=null;
         try{
-            resultado = jdbcTemplate.query(query, new Object[]{orderId},new RowMapper<CantidadProductoModel>(){
-                public CantidadProductoModel mapRow(ResultSet restulSet, int i) throws SQLException {
-                    return new CantidadProductoModel(restulSet.getInt(1),restulSet.getInt(2));
-                }
-            });
+            resultado = jdbcTemplate.queryForObject(query,new Object[]{orderId},Integer.class);
         }catch (Exception e){
             //do nothing
             throw new RuntimeException();

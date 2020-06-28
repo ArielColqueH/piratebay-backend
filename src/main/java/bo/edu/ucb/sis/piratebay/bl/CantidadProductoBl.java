@@ -16,7 +16,7 @@ public class CantidadProductoBl {
         this.cantidadProductoDao=cantidadProductoDao;
     }
 
-    public List<CantidadProductoModel> findAllCantidadProducto(Integer orderId){
+    public Integer findAllCantidadProducto(Integer orderId){
         return this.cantidadProductoDao.findAllCantidades(orderId);
     }
 }
