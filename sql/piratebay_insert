@@ -174,16 +174,18 @@ INSERT INTO attribute (product_id, attr_name, attr_value, attr_data_type, status
 VALUES (7,'duracion','108','minutos',1,1, 'root', '127.0.0.1',now());
 
 
---query
+--query lista de producto pedido by id
 
 SELECT
-    usr.user_id,usr.username,ord.order_id,ord.date,ord.payday,prod.product_name,proord.qtty_requested,att.attr_value
+    ord.order_id,prod.product_id,prod.product_name,proord.qtty_requested,att.attr_value,proord.comment
 FROM
     "user" usr
         JOIN "order" ord ON usr.user_id=ord.user_id
         JOIN product_order proord ON proord.order_id = ord.order_id
         JOIN product prod ON prod.product_id = proord.product_id
-        JOIN attribute att ON prod.product_id=att.product_id;
+        JOIN attribute att ON prod.product_id=att.product_id
+WHERE ord.order_id = 1
+ORDER BY prod.product_id;
 
 --query table by ID
 

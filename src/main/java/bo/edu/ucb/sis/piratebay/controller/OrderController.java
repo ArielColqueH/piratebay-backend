@@ -1,5 +1,6 @@
 package bo.edu.ucb.sis.piratebay.controller;
 import bo.edu.ucb.sis.piratebay.bl.OrderBl;
+import bo.edu.ucb.sis.piratebay.model.EstadoOrderIdModel;
 import bo.edu.ucb.sis.piratebay.model.OrderModel;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -27,8 +28,8 @@ public class OrderController {
     public OrderController(OrderBl orderBl){
         this.orderBl=orderBl;
     }
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE )
-    public ResponseEntity<List<OrderModel>> findAllOrdersActive(@RequestHeader("Authorization") String authorization){ //bearer token
+    @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE )
+    public ResponseEntity<List<OrderModel>> findAllOrdersActive(@RequestHeader("Authorization") String authorization,@RequestBody Integer ordId){ //bearer token
         //decodificar el token
         String tokenJwt =authorization.substring(7);
         System.out.println("Token JWT :"+tokenJwt);
@@ -44,6 +45,6 @@ public class OrderController {
         JWTVerifier verifier = JWT.require(algorithm).withIssuer("Piratebay").build();
         verifier.verify(tokenJwt);
         System.out.println("obteniendo lista de ordenes");
-        return new ResponseEntity<>(this.orderBl.findAllOrders(), HttpStatus.OK);
+        return new ResponseEntity<>(this.orderBl.findAllOrders(ordId), HttpStatus.OK);
     }
 }

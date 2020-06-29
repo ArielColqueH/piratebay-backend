@@ -16,7 +16,7 @@ public class OrderBl {
         this.orderDao=orderDao;
     }
 
-    public List<OrderModel> findAllOrders(){
-        return this.orderDao.findAllOrders();
+    public List<OrderModel> findAllOrders(Integer orderId){
+        return this.orderDao.findAllOrders(orderId);
     }
 }

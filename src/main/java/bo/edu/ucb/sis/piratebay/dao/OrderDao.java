@@ -17,21 +17,23 @@ public class OrderDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<OrderModel> findAllOrders(){
+    public List<OrderModel> findAllOrders(Integer orderId){
         String query ="SELECT\n" +
-                "    ord.order_id,usr.username,ord.date,ord.payday,prod.product_name,proord.qtty_requested,att.attr_value\n" +
+                "    ord.order_id,prod.product_id,prod.product_name,proord.qtty_requested,att.attr_value,proord.comment\n" +
                 "FROM\n" +
                 "    \"user\" usr\n" +
                 "        JOIN \"order\" ord ON usr.user_id=ord.user_id\n" +
                 "        JOIN product_order proord ON proord.order_id = ord.order_id\n" +
                 "        JOIN product prod ON prod.product_id = proord.product_id\n" +
-                "        JOIN attribute att ON prod.product_id=att.product_id";
+                "        JOIN attribute att ON prod.product_id=att.product_id\n" +
+                "WHERE ord.order_id = ?\n" +
+                "ORDER BY prod.product_id;";
 
         List<OrderModel> resultado=null;
         try{
-            resultado = jdbcTemplate.query(query,new RowMapper<OrderModel>(){
+            resultado = jdbcTemplate.query(query,new Object[]{orderId},new RowMapper<OrderModel>(){
                 public OrderModel mapRow(ResultSet restulSet, int i) throws SQLException{
-                    return new OrderModel(restulSet.getInt(1),restulSet.getString(2),restulSet.getString(3),restulSet.getString(4),restulSet.getString(5),restulSet.getInt(6),restulSet.getString(7));
+                    return new OrderModel(restulSet.getInt(1),restulSet.getInt(2),restulSet.getString(3),restulSet.getInt(4),restulSet.getString(5),restulSet.getString(6));
                 }
             });
         }catch (Exception e){

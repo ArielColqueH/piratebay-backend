@@ -2,24 +2,22 @@ package bo.edu.ucb.sis.piratebay.model;
 
 public class OrderModel {
     private Integer orderId;
-    private String username;
-    private String fechaPedido;
-    private String fechaPago;
+    private Integer productoId;
     private String nombreProducto;
     private Integer cantidadPedida;
     private String minutos;
+    private String comentario;
 
     public OrderModel() {
     }
 
-    public OrderModel(Integer orderId, String username, String fechaPedido, String fechaPago, String nombreProducto, int cantidadPedida, String minutos) {
+    public OrderModel(Integer orderId, Integer productoId, String nombreProducto, Integer cantidadPedida, String minutos, String comentario) {
         this.orderId = orderId;
-        this.username = username;
-        this.fechaPedido = fechaPedido;
-        this.fechaPago = fechaPago;
+        this.productoId = productoId;
         this.nombreProducto = nombreProducto;
         this.cantidadPedida = cantidadPedida;
         this.minutos = minutos;
+        this.comentario = comentario;
     }
 
     public Integer getOrderId() {
@@ -30,28 +28,12 @@ public class OrderModel {
         this.orderId = orderId;
     }
 
-    public String getUsername() {
-        return username;
+    public Integer getProductoId() {
+        return productoId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getFechaPedido() {
-        return fechaPedido;
-    }
-
-    public void setFechaPedido(String fechaPedido) {
-        this.fechaPedido = fechaPedido;
-    }
-
-    public String getFechaPago() {
-        return fechaPago;
-    }
-
-    public void setFechaPago(String fechaPago) {
-        this.fechaPago = fechaPago;
+    public void setProductoId(Integer productoId) {
+        this.productoId = productoId;
     }
 
     public String getNombreProducto() {
@@ -78,16 +60,23 @@ public class OrderModel {
         this.minutos = minutos;
     }
 
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
     @Override
     public String toString() {
         return "OrderModel{" +
                 "orderId=" + orderId +
-                ", username='" + username + '\'' +
-                ", fechaPedido='" + fechaPedido + '\'' +
-                ", fechaPago='" + fechaPago + '\'' +
+                ", productoId=" + productoId +
                 ", nombreProducto='" + nombreProducto + '\'' +
                 ", cantidadPedida=" + cantidadPedida +
                 ", minutos='" + minutos + '\'' +
+                ", comentario='" + comentario + '\'' +
                 '}';
     }
 }
