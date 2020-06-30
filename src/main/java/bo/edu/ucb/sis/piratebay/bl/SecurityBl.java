@@ -46,8 +46,8 @@ public class SecurityBl {
                 .toString();//TODO repetir el algoritmo de hash N veces
         Integer userId = userDao.findUserIdByUsernameAndPassword(username,sha256hex);
         if(userId!=null){
-            result.put("authentication", generateJWT(userId,50,"AUTHN",userDao.findAllFeatureCodeByUserId(userId)));
-            result.put("refresh", generateJWT(userId,55,"REFRESH",null));
+            result.put("authentication", generateJWT(userId,1,"AUTHN",userDao.findAllFeatureCodeByUserId(userId)));
+            result.put("refresh", generateJWT(userId,2,"REFRESH",null));
             return result;
         }
         else{
@@ -75,8 +75,8 @@ public class SecurityBl {
         Map<String,String> result= new HashMap();
         Integer userIdAsInt = Integer.parseInt(idUsuario);
 
-            result.put("authentication", generateJWT(userIdAsInt,50,"AUTHN",userDao.findAllFeatureCodeByUserId(userIdAsInt)));
-            result.put("refresh", generateJWT(Integer.parseInt(idUsuario),55,"REFRESH",null));
+            result.put("authentication", generateJWT(userIdAsInt,1,"AUTHN",userDao.findAllFeatureCodeByUserId(userIdAsInt)));
+            result.put("refresh", generateJWT(Integer.parseInt(idUsuario),2,"REFRESH",null));
             System.out.println("obteniendo refresh");
             return result;
     }

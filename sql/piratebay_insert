@@ -231,6 +231,46 @@ WHERE order_id = 1 and product_id=5;
 
 
 
+-----------------------------------querys de prueba--------------------------------------------
+--insertar producto
+INSERT INTO product (product_code,cat_product_type, product_name, product_description, status, tx_id, tx_username,
+                     tx_host, tx_date,product_qqt)
+VALUES ('glad','video','gladiador',1,1,1,'admin','localhost',now(),5);
+INSERT INTO product (product_code,cat_product_type, product_name, product_description, status, tx_id, tx_username,
+                     tx_host, tx_date,product_qqt)
+VALUES ('scr','video','scream',1,1,1,'admin','localhost',now(),9);
+--atributo
+
+INSERT INTO attribute (product_id, attr_name, attr_value, attr_data_type, status, tx_id, tx_username, tx_host, tx_date)
+VALUES (10,'duracion','123','minutos',1,1, 'root', '127.0.0.1',now());
+INSERT INTO attribute (product_id, attr_name, attr_value, attr_data_type, status, tx_id, tx_username, tx_host, tx_date)
+VALUES (9,'duracion','75','minutos',1,1, 'root', '127.0.0.1',now());
+
+--user
+INSERT INTO "user"
+( user_id, username, password, email, phone_number,
+  cat_user_status, status, tx_id, tx_username, tx_host,
+  tx_date)
+VALUES
+(  nextval('user_user_id_seq') , 'walterwhite', '6b9ffd71631dd64e1231ef41e138cd29b933c687073c1f72a66571998d9bd2a3', 'arielc@gmail.com', '70655570',
+   'ACTIVE', 1, 1, 'root', '127.0.0.1',
+   now()
+);
+
+--ORDENES
+INSERT INTO "order" (user_id, date, status, tx_id, tx_username, tx_host, tx_date, payday)
+VALUES (8,CURRENT_TIMESTAMP ,1, 1, 'root', '127.0.0.1',now(),CURRENT_TIMESTAMP);
+
+--ORDEN PRODUCTO
+INSERT INTO product_order (order_id,product_id, unit_price, qtty_requested, status, tx_id, tx_username, tx_host, tx_date, comment)
+VALUES(8,10,5,4,1, 1, 'root', '127.0.0.1',now(),'no comments');
+--ORDEN PRODUCTO
+INSERT INTO product_order (order_id,product_id, unit_price, qtty_requested, status, tx_id, tx_username, tx_host, tx_date, comment)
+VALUES(7,9,5,2,1, 1, 'root', '127.0.0.1',now(),'no comments');
+
+
+
+
 
 
 
