@@ -200,6 +200,16 @@ FROM
 GROUP BY  ord.order_id,usr.username,ord.date,ord.payday
 ORDER BY ord.order_id;
 
+-- get cantidades
+
+SELECT
+    proord.qtty_given
+FROM
+        "order" ord
+        JOIN product_order proord ON proord.order_id = ord.order_id
+WHERE ord.order_id=1
+ORDER BY proord.order_id;
+
 
 -- ver estados by id
 SELECT
@@ -207,6 +217,19 @@ SELECT
 FROM
      product prod
 WHERE prod.product_id = 6;
+
+--update dates
+UPDATE "order" ord
+SET preparationfinisheday = '2020/6/29 15:58:04'
+WHERE ord.order_id = 1;
+
+--update order
+
+UPDATE product_order
+SET qtty_given = 8
+WHERE order_id = 1 and product_id=5;
+
+
 
 
 

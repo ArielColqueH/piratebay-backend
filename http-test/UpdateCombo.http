@@ -1,0 +1,10 @@
+POST http://localhost:8008/api/v1/sendData
+Content-Type: application/json
+Accept: application/json
+Authorization: bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmZWF0dXJlcyI6WyJCVVRUT05fREVMRVRFX1VTRVIiLCJQQUdFX1VTRVJfTUFOQUdFTUVOVCIsIlBST0RVQ1RfTUFOQUdNRU5UIl0sInN1YiI6IjIiLCJpc3MiOiJQaXJhdGViYXkiLCJ0eXBlIjoiQVVUSE4iLCJleHAiOjE1OTM1MDI2MDh9.MJtZQo6eCwk2o9g5H1x1ESW0Mh9-PUcrZPsyd61bgc8
+
+{
+  "combonumber": 100,
+  "orderId": 1,
+  "productId": 5
+}

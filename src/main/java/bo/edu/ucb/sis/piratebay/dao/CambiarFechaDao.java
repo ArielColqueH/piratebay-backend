@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.sql.Timestamp;
 
 @Service
 public class CambiarFechaDao {
@@ -31,7 +30,6 @@ public class CambiarFechaDao {
         try{
             System.out.println("fecha pedido estado :"+resultado);
             resultado=jdbcTemplate.update(query,new Object[]{orderId});
-
         }catch (Exception e){
             //do nothing
             throw new RuntimeException();
