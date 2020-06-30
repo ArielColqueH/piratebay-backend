@@ -1,6 +1,6 @@
 package bo.edu.ucb.sis.piratebay.controller;
-import bo.edu.ucb.sis.piratebay.bl.CambiarEstadoBl;
-import bo.edu.ucb.sis.piratebay.model.CambiarEstadoModel;
+import bo.edu.ucb.sis.piratebay.bl.CambiarFechaBl;
+import bo.edu.ucb.sis.piratebay.model.CambiarFechaModel;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins="*")
 @RestController
-@RequestMapping("/api/v1/cambiarEstado")
-public class CambiarEstadoController {
-    private CambiarEstadoBl cambiarEstadoBl;
+@RequestMapping("/api/v1/cambiarFecha")
+public class CambiarFechaController {
+    private CambiarFechaBl cambiarFechaBl;
     @Value("${piratebay.security.tokenJwt}")
     private String secretJWT;
 
     @Autowired
-    public CambiarEstadoController(CambiarEstadoBl cambiarEstadoBl){
-        this.cambiarEstadoBl=cambiarEstadoBl;
+    public CambiarFechaController(CambiarFechaBl cambiarFechaBl){
+        this.cambiarFechaBl=cambiarFechaBl;
     }
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE , consumes = MediaType.APPLICATION_JSON_VALUE )
-    public ResponseEntity<Integer> findAllCantidadProductos(@RequestHeader("Authorization") String authorization, @RequestBody CambiarEstadoModel order){
+    public ResponseEntity<Integer> fechaPedidos(@RequestHeader("Authorization") String authorization, @RequestBody CambiarFechaModel order){
         //bearer token
         //decodificar el token
         String tokenJwt =authorization.substring(7);
@@ -41,7 +41,7 @@ public class CambiarEstadoController {
         Algorithm algorithm = Algorithm.HMAC256(secretJWT);
         JWTVerifier verifier = JWT.require(algorithm).withIssuer("Piratebay").build();
         verifier.verify(tokenJwt);
-        System.out.println("cambiando de estado");
-        return new ResponseEntity<>(this.cambiarEstadoBl.cambiarEstadoPedido(order.getOrder_estado(),order.getOrder_id()), HttpStatus.OK);
+        System.out.println("cambiando de estado de pedido");
+        return new ResponseEntity<>(this.cambiarFechaBl.cambiarFechaPedidoN(order.getOrder_id(),order.getEstado_producto()), HttpStatus.OK);
     }
 }

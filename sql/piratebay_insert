@@ -201,6 +201,16 @@ GROUP BY  ord.order_id,usr.username,ord.date,ord.payday
 ORDER BY ord.order_id;
 
 
+-- ver estados by id
+SELECT
+    prod.product_qqt
+FROM
+     product prod
+WHERE prod.product_id = 6;
+
+
+
+
 
 
 
